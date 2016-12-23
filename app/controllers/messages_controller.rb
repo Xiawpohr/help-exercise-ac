@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
 
     if params[:days]
       # TODO: @messages = @messages.within_days(params[:days].to_i)
-      @messages = @messages.where( ["created_at >= ?", Time.now - params[:days].to_i.days ] )
+      @messages = @messages.within_days(params[:days].to_i)
     end
   end
 
