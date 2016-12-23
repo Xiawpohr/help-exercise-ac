@@ -16,16 +16,17 @@
   </p>
 
 <% end %>
+<ul>
+  <% @message.comments.each do |comment| %>
+    <li id="comment-<%= comment.id %>">
+      <p><%= simple_format comment.content %> at <%= comment.created_at.to_s(:short) %> by <%= comment.user.display_name %>
 
-<% @message.comments.each do |comment| %>
+        <% if comment.user == current_user %>
+          <%# TODO: 修改成 AJAX 版本的刪除 %>
+          <%= link_to "Delete", message_comment_path(@message, comment), :method => :delete, :remote=>true, :data => { :confirm => "Are u sure?"} %>
+        <% end %>
+      </p>
+    </li>
+  <% end %>
 
-  <p><%= simple_format comment.content %> at <%= comment.created_at.to_s(:short) %> by <%= comment.user.display_name %>
-
-    <% if comment.user == current_user %>
-      <%# TODO: 修改成 AJAX 版本的刪除 %>
-      <%= link_to "Delete", message_comment_path(@message, comment), :method => :delete, :data => { :confirm => "Are u sure?"} %>
-    <% end %>
-  </p>
-
-<% end %>
-
+</ul>
