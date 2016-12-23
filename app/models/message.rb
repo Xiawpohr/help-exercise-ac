@@ -12,6 +12,6 @@ class Message < ApplicationRecord
   scope :completed, ->{ where( :status => "completed" ) }
 
   def self.within_days(time)
-      where( "created_at >= ?",time.days )
+      where( "created_at >= ?", Time.now - time.days )
   end
 end
