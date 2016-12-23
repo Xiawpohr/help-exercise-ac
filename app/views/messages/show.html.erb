@@ -4,6 +4,15 @@
 
 <h2>Comments list</h2>
 
+<h2>Liked Users</h2>
+<% @message.likedusers.each do |user| %>
+<p><%= user.email %></p> 
+<% end %>
+<h2>Subscribed Users</h2>
+<% @message.subscribedusers.each do |user| %>
+<p><%= user.email %></p> 
+<% end %>
+
 <%= form_for [@message, @comment] do |f| %>
 
   <p>
